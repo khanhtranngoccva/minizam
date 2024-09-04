@@ -1,0 +1,15 @@
+services:
+  database:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: minizam
+      POSTGRES_USER: minizam
+      POSTGRES_DB: minizam
+    ports:
+      - 8888:5432
+    networks:
+      - primary
+networks:
+  primary:
+    driver: bridge

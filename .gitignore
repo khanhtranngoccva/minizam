@@ -1,0 +1,7 @@
+.venv
+.idea
+__pycache__
+content
+temp
+samples
+workspace
