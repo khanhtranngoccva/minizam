@@ -43,9 +43,14 @@ class Fingerprint:
                     fingerprint_obj["fingerprint"],
                     _id=fingerprint_obj["id"],
                 )
+                already_yielded_fingerprints = set()
                 # TODO: Optimize using database algorithms and/or using a tree data structure. This is a prototype
                 for input_raw_fingerprint in input_raw_fingerprints:
                     if match_fingerprints(input_raw_fingerprint, database_fingerprint.fingerprint):
+                        # Do not yield duplicate fingerprints.
+                        if database_fingerprint.id in already_yielded_fingerprints:
+                            continue
+                        already_yielded_fingerprints.add(database_fingerprint.id)
                         yield database_fingerprint
 
 

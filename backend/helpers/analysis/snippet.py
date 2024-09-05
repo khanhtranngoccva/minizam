@@ -28,7 +28,7 @@ class Snippet:
 
         spectrogram = Spectrogram(self.path)
         raw_fingerprints = get_fingerprints(spectrogram)
-        fingerprints = Fingerprint.search(raw_fingerprints[0:1])
+        fingerprints = Fingerprint.search(raw_fingerprints[0:5])
 
         # Group matches
         matches = OrderedDict()
