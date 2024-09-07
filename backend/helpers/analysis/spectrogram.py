@@ -7,6 +7,8 @@ from matplotlib import pyplot
 from scipy.io import wavfile
 from scipy import signal
 
+import constants
+
 
 class Spectrogram:
     def __init__(self, file_path):
@@ -22,8 +24,8 @@ class Spectrogram:
             self.series,
             fs=self.sample_rate,
             # Each segment is 10 seconds long, with a 9-second overlap.
-            nperseg=10 * sample_rate,
-            noverlap=9 * sample_rate,
+            nperseg=constants.WINDOW_DURATION * sample_rate,
+            noverlap=(constants.WINDOW_DURATION - constants.WINDOW_INCREMENT) * sample_rate,
             window="hamming",
         )
 

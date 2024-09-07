@@ -7,8 +7,11 @@ from pydub import AudioSegment
 from helpers import path, database
 
 
-def load_audio(infile):
+def load_audio(infile, *, slice_audio=None):
     sound = AudioSegment.from_file(infile)
+    if slice_audio is not None:
+        start, end = slice_audio
+        sound = sound[start * 1000:end * 1000]
     buffer_io = io.BytesIO()
     sound.export(buffer_io, format="wav")
     buffer = buffer_io.read()
@@ -125,3 +128,13 @@ class Sample:
                     "UPDATE samples SET sha256=%s, title=%s, artist=%s, album=%s, is_processed=%s WHERE id=%s",
                     [_sha256, self.title, self.artist, self.album, self.is_processed, self.id]
                 )
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "sha256": self.sha256,
+            "title": self.title,
+            "artist": self.artist,
+            "album": self.album,
+            "is_processed": self.is_processed
+        }

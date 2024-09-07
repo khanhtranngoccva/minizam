@@ -12,9 +12,9 @@ class Snippet:
         return path.get_temp_path(f"{self.sha256}.wav")
 
     @staticmethod
-    def load(infile):
+    def load(infile, *_, slice_audio=None):
         from helpers.analysis.sample import load_audio
-        buffer, sha256_hash = load_audio(infile)
+        buffer, sha256_hash = load_audio(infile, slice_audio=slice_audio)
         new_filename = f"{sha256_hash}.wav"
         new_file_path = path.get_temp_path(new_filename)
         with open(new_file_path, "wb") as f:
@@ -28,7 +28,7 @@ class Snippet:
 
         spectrogram = Spectrogram(self.path)
         raw_fingerprints = get_fingerprints(spectrogram)
-        fingerprints = Fingerprint.search(raw_fingerprints[0:5])
+        fingerprints = Fingerprint.search(raw_fingerprints[0:3])
 
         # Group matches
         matches = OrderedDict()

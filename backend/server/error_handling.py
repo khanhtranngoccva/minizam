@@ -1,7 +1,7 @@
 import traceback
 
 from helpers import errors
-from helpers.server import app
+from server.server import app
 
 
 @app.errorhandler(errors.HTTPError)
