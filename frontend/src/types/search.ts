@@ -7,3 +7,6 @@ export interface SearchResult {
     image: string | null,
     audioTime: number,
 }
+
+
+

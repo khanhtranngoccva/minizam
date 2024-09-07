@@ -1,12 +1,11 @@
 "use client";
 
 import * as React from 'react';
-import MinizamButton from "@/components/MinizamButton";
+import MinizamPopover from "@/components/MinizamPopover";
 
 function forceUpdateReducer(state: number): number {
     return state++;
 }
-
 
 function MinizamPortal() {
     const [_, update] = React.useReducer(forceUpdateReducer, 0);
@@ -19,6 +18,7 @@ function MinizamPortal() {
             for (let mutation of mutations) {
                 if (mutation.target instanceof HTMLAudioElement) {
                     update();
+                    break;
                 }
             }
         });
@@ -31,7 +31,7 @@ function MinizamPortal() {
 
     return <>
         {Array.from(audioElements).map(element => {
-            return <MinizamButton key={element as any} audioElement={element}></MinizamButton>
+            return <MinizamPopover key={element as any} audioElement={element}></MinizamPopover>
         })}
     </>
 }

@@ -11,7 +11,7 @@ function MinizamResultItem(props: SearchResult) {
     const sampleArtist = props.artist ?? "Unknown Artist(s)";
     const sampleAlbum = props.album ?? "Unknown Album";
 
-    return <li className={"flex gap-2"}>
+    return <li className={"flex gap-2 overflow-hidden"}>
         <div
             className={"max-w-32 min-w-16 max-h-32 min-h-16 w-[8vmin] h-[8vmin] flex-0 aspect-square overflow-hidden rounded-[8px] relative"}>
             {
@@ -24,8 +24,8 @@ function MinizamResultItem(props: SearchResult) {
                            }}></div>
             }
         </div>
-        <div className={"flex flex-col gap-1 flex-1"}>
-            <h2 className={"font-[500] text-base"}>{sampleTitle}</h2>
+        <div className={"flex flex-col gap-1 flex-1 overflow-hidden"}>
+            <h2 className={"font-[500] text-base overflow-ellipsis"}>{sampleTitle}</h2>
             <span className={"text-[0.75rem]"}>{sampleArtist}</span>
             <span className={"text-[0.75rem]"}>{sampleAlbum}</span>
         </div>
